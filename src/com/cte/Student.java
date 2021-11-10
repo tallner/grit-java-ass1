@@ -2,21 +2,23 @@ package com.cte;
 
 //Student class would be the entity to write to a database
 public class Student {
-    private int id;
     private String name;
-    private double SSN;
-    private String course;
-    private String grade;
+    private long SSN;
 
+    private Recordbook recordbook;
 
-
-    public int getId() {
-        return id;
+ //   public Student() {
+ //       this.name = "";
+ //       this.SSN = 0;
+ //       this.recordbook = new Recordbook(0);
+ //   }
+    public Student(String name, long SSN, int grade) {
+        this.name = name;
+        this.SSN = SSN;
+        this.recordbook = new Recordbook(grade);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public String getName() {
         return name;
@@ -26,27 +28,30 @@ public class Student {
         this.name = name;
     }
 
-    public double getSSN() {
+
+    public long getSSN() {
         return SSN;
     }
 
-    public void setSSN(double SSN) {
+    public void setSSN(long SSN) {
         this.SSN = SSN;
     }
 
-    public String getCourse() {
-        return course;
+
+    public Recordbook getRecordbook() {
+        return recordbook;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
-    }
+//    public void setRecordbook(Recordbook recordbook) {
+//        this.recordbook = recordbook;
+//    }
 
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", SSN=" + SSN +
+                ", recordbook=" + recordbook +
+                '}';
     }
 }

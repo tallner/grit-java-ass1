@@ -1,25 +1,27 @@
 package com.cte;
 
-//Database controller
-//Reads the entities from a database/textfile depending on the input/terminal from the user.
-//Present the result in the terminal.
 public class Recordbook {
-    private float AverageGrade;
-    private int HighestGrade, LowestGrade;
+    private int grade;
+//    private String course;
 
-    public float getAverageGrade() {
-        return AverageGrade;
+    public Recordbook(int grade) {
+        this.grade = grade;
+//        this.course = course;
     }
 
-    public int getHighestGrade() {
-        return HighestGrade;
+    public int getGrade() {
+        return grade;
     }
 
-    public int getLowestGrade() {
-        return LowestGrade;
+    public void setGrade(int grade) {
+        this.grade = grade;
     }
 
-    public void addStudent(){
 
+    @Override
+    public String toString() {
+        return "Recordbook{" +
+                "grade=" + grade +
+                '}';
     }
 }
