@@ -15,6 +15,7 @@ public class Main {
         int sel = 666;
         Scanner userSel = new Scanner(System.in);
         RecordCatalogue recordCatalogue= new RecordCatalogue();
+        Filehandler filehandler = new Filehandler();
 
 
         while(true)
@@ -25,9 +26,9 @@ public class Main {
             System.out.println(" 0. List gradebooks ");
             System.out.println(" 1. Add gradebook ");
             System.out.println(" 2. List students from a gradebook");
-            System.out.println(" 3. Get statistics from a gradebook");
-            System.out.println(" 4. Get a students grade ");
-            System.out.println(" 5. Add student ");
+            System.out.println(" 2.1 Get statistics from the selected gradebook");
+            System.out.println(" 2.2 Get a students grade from the selected gradebook");
+            System.out.println(" 2.3 Add a student to the selected gradebook");
 //            System.out.println(" . Edit student ");
 //            System.out.println(" . List students ");
 //            System.out.println(" . Delete student ");
@@ -53,7 +54,6 @@ public class Main {
                 //list all files in directory
                 case 0 -> {
                     System.out.println("Available gradebooks:");
-                    Filehandler filehandler = new Filehandler(gradebookName);
                     filehandler.listFiles();
                 }
 
@@ -66,8 +66,7 @@ public class Main {
                         System.out.println("bad input");
                         userSel.next();
                     }
-                    Filehandler filehandler = new Filehandler(gradebookName);
-                    filehandler.createFile();
+                    filehandler.createFile(gradebookName);
                 }
 
                 //read from an existing gradebook
@@ -93,8 +92,6 @@ public class Main {
 
                             //read the specified file with the filehandler
                             try {
-                                Filehandler filehandler = new Filehandler(gradebookName);
-
                                 //read the students from the file into the catalogue object
                                 recordCatalogue.setStudentList(filehandler.readFile(gradebookName));
 
@@ -134,7 +131,6 @@ public class Main {
 
                 //add a student
                 case 5 -> {
-                    Filehandler filehandler = new Filehandler(gradebookName);
 
                     System.out.print("Student name: ");
                     String name = userSel.next();

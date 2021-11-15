@@ -9,12 +9,15 @@ import java.util.Scanner;
 public class Filehandler {
     private File myObj;
     private String[] paths;
-    private String basePath = "C:/ProgrammingCourses/grit/javaprogrammering/grit-java-ass1/_gradebooks/";
+//    private String basePath = "C:/ProgrammingCourses/grit/javaprogrammering/grit-java-ass1/_gradebooks/";
+    private String basePath = "./_gradebooks/";
 
-
-    public Filehandler(String filename) {
-        myObj = new File(filename);
+    public Filehandler() {
     }
+
+//    public Filehandler(String filename) {
+//        myObj = new File(filename);
+//    }
 
     public void listFiles(){
         try {
@@ -38,8 +41,9 @@ public class Filehandler {
         }
     }
 
-    public void createFile() {
+    public void createFile(String filename) {
         try {
+            myObj = new File(basePath+filename);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -60,7 +64,7 @@ public class Filehandler {
             myWriter.write( Integer.toString(grade) );
 
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            System.out.println("Successfully added to the gradebook.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
@@ -71,7 +75,7 @@ public class Filehandler {
         try {
             myObj = new File(basePath+filename);
             Scanner myReader = new Scanner(myObj);
-            ArrayList<Student> studentList = new ArrayList<Student>();
+            ArrayList<Student> studentList = new ArrayList<>();
 
             System.out.println("Students");
             while (myReader.hasNextLine()) {
