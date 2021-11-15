@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Filehandler {
-    File myObj;
-    String[] paths;
-    String basePath = "C:/ProgrammingCourses/grit/javaprogrammering/grit-java-ass1/_gradebooks/";
+    private File myObj;
+    private String[] paths;
+    private String basePath = "C:/ProgrammingCourses/grit/javaprogrammering/grit-java-ass1/_gradebooks/";
 
 
     public Filehandler(String filename) {

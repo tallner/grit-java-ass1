@@ -12,10 +12,10 @@ public class Recordbook {
     public int getGrade() {
         return grade;
     }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
+//
+//    public void setGrade(int grade) {
+//        this.grade = grade;
+//    }
 
 
     @Override

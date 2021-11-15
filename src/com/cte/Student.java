@@ -24,18 +24,18 @@ public class Student {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public long getSSN() {
-        return SSN;
-    }
-
-    public void setSSN(long SSN) {
-        this.SSN = SSN;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//
+//    public long getSSN() {
+//        return SSN;
+//    }
+//
+//    public void setSSN(long SSN) {
+//        this.SSN = SSN;
+//    }
 
 
     public Recordbook getRecordbook() {
