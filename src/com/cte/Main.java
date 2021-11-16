@@ -26,9 +26,9 @@ public class Main {
             System.out.println(" 0. List gradebooks ");
             System.out.println(" 1. Add gradebook ");
             System.out.println(" 2. List students from a gradebook");
-            System.out.println(" 2.1 Get statistics from the selected gradebook");
-            System.out.println(" 2.2 Get a students grade from the selected gradebook");
-            System.out.println(" 2.3 Add a student to the selected gradebook");
+            System.out.println(" 3. Get statistics from the selected gradebook");
+            System.out.println(" 4. Get a students grade from the selected gradebook");
+            System.out.println(" 5. Add a student to the selected gradebook");
 //            System.out.println(" . Edit student ");
 //            System.out.println(" . List students ");
 //            System.out.println(" . Delete student ");
@@ -123,10 +123,10 @@ public class Main {
                 case 4 -> {
                     System.out.print("Student name: ");
                     String name = userSel.next();
-                    int grade = recordCatalogue.findStudent(name);
+                    String grade = recordCatalogue.findStudent(name);
 
-                    if (grade == 666) System.out.println("Student not found");
-                    else System.out.println(name + " has the grade " + grade);
+                    if (grade.equals("666")) System.out.println("Student not found");
+                    else System.out.println(name + "´s grades:" + System.lineSeparator() + grade);
                 }
 
                 //add a student
@@ -138,9 +138,11 @@ public class Main {
                     long SSN = userSel.nextLong();
                     System.out.print("Student grade: ");
                     int grade = userSel.nextInt();
+                    System.out.print("Course: ");
+                    String course = userSel.next();
 
                     //add both to the object and the file o that you dont need to read the file again or loose if restarting
-                    recordCatalogue.addStudent(name,SSN,grade);
+                    recordCatalogue.addStudent(name,SSN,grade,course);
                     filehandler.writefile(name,SSN,grade,gradebookName);
 
                 }

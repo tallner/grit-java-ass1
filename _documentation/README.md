@@ -17,3 +17,10 @@ How to run the show
 - Select 2 read from a file and list the students
 - Selection 3-5 works with the file selected in 2
 - Exit with 100
+
+Existing problem:
+Cannot read the list of students when adding more than 1 course.
+Filereader is not dealing with that right now.
+First find the student, then iterate its courses, then jump to next student.
+
+

@@ -9,15 +9,10 @@ import java.util.Scanner;
 public class Filehandler {
     private File myObj;
     private String[] paths;
-//    private String basePath = "C:/ProgrammingCourses/grit/javaprogrammering/grit-java-ass1/_gradebooks/";
     private String basePath = "./_gradebooks/";
 
     public Filehandler() {
     }
-
-//    public Filehandler(String filename) {
-//        myObj = new File(filename);
-//    }
 
     public void listFiles(){
         try {
@@ -78,17 +73,30 @@ public class Filehandler {
             ArrayList<Student> studentList = new ArrayList<>();
 
             System.out.println("Students");
+
             while (myReader.hasNextLine()) {
 
-                String name = myReader.next();
-                long SSN = myReader.nextLong();
-                int grade = myReader.nextInt();
+                Student student = new Student();//create a new student that can be added to the arralist of students
 
-                studentList.add(new Student(name,SSN,grade));
-                System.out.println(name);
+                String name = myReader.next(); //read name from the file
+                long SSN = myReader.nextLong(); //read SSN from the file
+                student.addStudent(name,SSN); //add the student
+
+                do {//iterate through the grades of the student
+                    int grade = myReader.nextInt();//read grade from the file
+                    String course = myReader.next();//read course from the file
+
+                    student.addCourse(grade,course); //add the grades and courses
+                    myReader.nextLine().contains("newcourse");//just to get to right line in the scanner
+
+                }while (!myReader.nextLine().contains("/"));
+
+                studentList.add(student); //add the student to the arraylist of students
+                System.out.println(student.getName());
 
             }
             myReader.close();
+//            System.out.println(studentList);
             return studentList;
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
