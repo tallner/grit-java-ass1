@@ -8,7 +8,7 @@ DrawIo
 Install the drawIO editor if you want to use or change the diagram
 
 How to run the show
-- The folder path for the gradebook file is hardcoded in Filhandler class String basePath = "C:/ProgrammingCourses/grit/javaprogrammering/grit-java-ass1/_gradebooks/";  
+- The folder path for the gradebook file is hardcoded in Filehandler class String basePath = "C:/ProgrammingCourses/grit/javaprogrammering/grit-java-ass1/_gradebooks/";  
   -->Change this path to relative path to run on another computer
 - Run the app
 - Now there is a continuous loop in Main running the UI and the logic
@@ -19,8 +19,5 @@ How to run the show
 - Exit with 100
 
 Existing problem:
-Cannot read the list of students when adding more than 1 course.
-Filereader is not dealing with that right now.
-First find the student, then iterate its courses, then jump to next student.
-
+Cannot create a students with more than 1 course.
 
