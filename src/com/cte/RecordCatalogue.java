@@ -6,6 +6,9 @@ public class RecordCatalogue {
     private int HighestGrade=0, LowestGrade=100;
     ArrayList<Student> studentList = new ArrayList<>();
 
+    public RecordCatalogue() {
+    }
+
     public float getAverageGrade() {
         int studentsum=0, totalsum=0;
         float studenave=0;
@@ -44,6 +47,7 @@ public class RecordCatalogue {
         return LowestGrade;
     }
 
+    //Find a student and get the grades
     public String findStudent(String name) {
         String result = "";
 
@@ -55,27 +59,51 @@ public class RecordCatalogue {
                     result = result +
                             studentList.get(i).getRecordbook().get(j).getCourse()
                             +": "+
-                            studentList.get(i).getRecordbook().get(j).getGrade();
+                            studentList.get(i).getRecordbook().get(j).getGrade()
+                            +" | ";
                 }
                 return result;
-
-//                return studentList.get(i).getRecordbook().getCourse()
-//                        +": "+
-//                        studentList.get(i).getRecordbook().getGrade();
-
             }
         }
         return "666";
     }
 
+    //Find a student and get the grades
+    //ONLY TAKES NAME INTO ACCOUNT, so if you have students with the same name youre screwed
+    public String addGradeToStudent(String name,int grade, String course) {
+        String result = "";
+
+        for (int i = 0; i < studentList.size(); i++) {
+            if (studentList.get(i).getName().equals(name)){
+                studentList.get(i).addCourse(grade,course);
+                return course+":"+grade+"added to"+name;
+            }
+        }
+        return "Student not found";
+    }
+
+    //sets the list of all students and their grades
     public void setStudentList(ArrayList<Student> studentList) {
         this.studentList = studentList;
     }
 
-    public void addStudent(String name, long SSN, int grade, String course){
-        Student student = new Student(name,SSN,grade,course);
-        studentList.add(student);
+    //returns all students and their grades
+    public ArrayList<Student> getStudentList(){
+        return this.studentList;
     }
+
+    //adds a student to the catalogue
+    public void addStudent(String name, long SSN, int grade, String course){
+        //add a new student
+        Student student = new Student(name,SSN);
+        //add grade to this student
+        student.addCourse(grade,course);
+        //add to student to the list
+        studentList.add(student);
+
+
+    }
+
 //    public void removeStudent(){
 //    }
 }

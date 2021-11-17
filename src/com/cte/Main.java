@@ -25,13 +25,12 @@ public class Main {
             System.out.println(" |**********************| ");
             System.out.println(" 0. List gradebooks ");
             System.out.println(" 1. Add gradebook ");
-            System.out.println(" 2. List students from a gradebook");
+            System.out.println(" 2. Select a gradebook");
             System.out.println(" 3. Get statistics from the selected gradebook");
             System.out.println(" 4. Get a students grade from the selected gradebook");
             System.out.println(" 5. Add a student to the selected gradebook");
-//            System.out.println(" . Edit student ");
-//            System.out.println(" . List students ");
-//            System.out.println(" . Delete student ");
+            System.out.println(" 6. Add a grade to an existing student ");
+
             System.out.println(" 100. Exit ");
             System.out.println("....................");
             System.out.println("Make your choice!");
@@ -136,30 +135,39 @@ public class Main {
                     String name = userSel.next();
                     System.out.print("Student SSN: ");
                     long SSN = userSel.nextLong();
+                    System.out.print("Student Course: ");
+                    String course = userSel.next();
                     System.out.print("Student grade: ");
                     int grade = userSel.nextInt();
-                    System.out.print("Course: ");
-                    String course = userSel.next();
 
-                    //add both to the object and the file o that you dont need to read the file again or loose if restarting
+
+                    //add both to the object and the file so that you dont need to read the file again or loose if restarting
                     recordCatalogue.addStudent(name,SSN,grade,course);
-                    filehandler.writefile(name,SSN,grade,gradebookName);
+                    filehandler.writeNewStudentTofile(name,SSN,grade,gradebookName);
 
                 }
 
-                //remove the student
+                //add a grade to an existing student
                 case 6 -> {
-                    System.out.println("3");
+                    System.out.print("Student name: ");
+                    String name = userSel.next();
+
+                    System.out.print("Course: ");
+                    String course = userSel.next();
+
+                    System.out.print("Grade: ");
+                    int grade = userSel.nextInt();
+
+                    //add both to the object and the file so that you dont need to read the file again or loose if restarting
+                    recordCatalogue.addGradeToStudent(name,grade,course);
+                    filehandler.writeStudentsToFile(recordCatalogue,gradebookName);
 
 
                 }
 
                 default -> System.out.println("0");
             }
-
-
         }
-
 
     }
 

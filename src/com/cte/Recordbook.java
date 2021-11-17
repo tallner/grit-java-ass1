@@ -15,11 +15,6 @@ public class Recordbook {
     public String getCourse() {
         return course;
     }
-//
-//    public void setGrade(int grade) {
-//        this.grade = grade;
-//    }
-
 
     @Override
     public String toString() {

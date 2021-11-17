@@ -8,8 +8,7 @@ import java.util.Scanner;
 
 public class Filehandler {
     private File myObj;
-    private String[] paths;
-    private String basePath = "./_gradebooks/";
+    private final String basePath = "./_gradebooks/";
 
     public Filehandler() {
     }
@@ -21,10 +20,10 @@ public class Filehandler {
             myObj = new File(basePath);
 
             // array of files and directory
-            paths = myObj.list();
+            String[] paths = myObj.list();
 
             // for each name in the path array
-            for(String path:paths) {
+            for(String path: paths) {
 
                 // prints filename and directory name
                 System.out.println(path);
@@ -50,7 +49,7 @@ public class Filehandler {
         }
     }
 
-    public void writefile(String name, long SSN, int grade, String filename){
+    public void writeNewStudentTofile(String name, long SSN, int grade, String filename){
         try {
             FileWriter myWriter = new FileWriter(basePath+filename,true);
             myWriter.write(System.lineSeparator());
@@ -60,6 +59,36 @@ public class Filehandler {
 
             myWriter.close();
             System.out.println("Successfully added to the gradebook.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void writeStudentsToFile(RecordCatalogue recordCatalogue, String filename){
+        try {
+            FileWriter myWriter = new FileWriter(basePath+"TEST.txt",false);
+            ArrayList<Student> students = recordCatalogue.getStudentList();
+            //students = recordCatalogue.getStudentList();
+
+            for (int i = 0; i < students.size() ; i++) {
+                myWriter.write(students.get(i).getName() + System.lineSeparator());
+                myWriter.write(students.get(i).getSSN() + System.lineSeparator());
+
+                for (int j = 0; j < students.get(i).getRecordbook().size(); j++) {
+                    myWriter.write(students.get(i).getRecordbook().get(j).getCourse() + System.lineSeparator());
+                    myWriter.write(students.get(i).getRecordbook().get(j).getGrade() + System.lineSeparator());
+
+                    if ((students.get(i).getRecordbook().size() > 1) && (j<(students.get(i).getRecordbook().size())-1)) {
+                        myWriter.write("newcourse" + System.lineSeparator());
+                    }
+                }
+                myWriter.write("/" + System.lineSeparator());
+
+            }
+
+            myWriter.close();
+            System.out.println("Successfully printed the gradebook.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
@@ -76,15 +105,13 @@ public class Filehandler {
 
             while (myReader.hasNextLine()) {
 
-                Student student = new Student();//create a new student that can be added to the arralist of students
-
                 String name = myReader.next(); //read name from the file
                 long SSN = myReader.nextLong(); //read SSN from the file
-                student.addStudent(name,SSN); //add the student
+                Student student = new Student(name,SSN);//create a new student that can be added to the arralist of students
 
                 do {//iterate through the grades of the student
-                    int grade = myReader.nextInt();//read grade from the file
                     String course = myReader.next();//read course from the file
+                    int grade = myReader.nextInt();//read grade from the file
 
                     student.addCourse(grade,course); //add the grades and courses
                     myReader.nextLine().contains("newcourse");//just to get to right line in the scanner
@@ -105,16 +132,6 @@ public class Filehandler {
         }
 
     }
-
-
-    //
-//
-//        if (myObj.createNewFile()) {
-//            System.out.println("File created: " + myObj.getName());
-//        } else {
-//            System.out.println("File already exists.");
-//        }
-//
 
 
 
