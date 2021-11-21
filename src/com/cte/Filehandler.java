@@ -67,7 +67,7 @@ public class Filehandler {
 
     public void writeStudentsToFile(RecordCatalogue recordCatalogue, String filename){
         try {
-            FileWriter myWriter = new FileWriter(basePath+"TEST.txt",false);
+            FileWriter myWriter = new FileWriter(basePath+filename,false);
             ArrayList<Student> students = recordCatalogue.getStudentList();
             //students = recordCatalogue.getStudentList();
 
